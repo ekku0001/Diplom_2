@@ -3,6 +3,7 @@ import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -41,9 +42,6 @@ public class TestCreateUser {
         userClient.login(user)
                 .then()
                 .assertThat().statusCode(200);
-
-        //delete registered user
-        userClient.delete();
     }
 
     @Test
@@ -76,6 +74,12 @@ public class TestCreateUser {
                 .and()
                 .assertThat()
                 .body("message", is("User already exists"));
+    }
+
+    @After
+    public void cleanUp(){
+        //delete registered user
+        userClient.delete();
     }
 
 }

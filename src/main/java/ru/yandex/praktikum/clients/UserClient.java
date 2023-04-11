@@ -11,8 +11,8 @@ import static ru.yandex.praktikum.clients.base.StellarBurgersClient.getBaseReqSp
 public class UserClient {
     private final String AUTH_URI = BASE_URI + "/api/auth";
     private final String USER_URI = BASE_URI + "/api/auth/user";
-    private String accessToken;
-    private String refreshToken;
+    private String accessToken = "unknown";
+    private String refreshToken = "unknown";
 
     public String getAccessToken() {
         return accessToken;
